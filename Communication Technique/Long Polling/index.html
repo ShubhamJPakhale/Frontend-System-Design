@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loong Polling Demo</title>
+  </head>
+  <body>
+    <h1>Long Polling Example</h1>
+    <div id="data-long-polling"></div>
+
+    <script>
+      async function getData(lastData) {
+        try {
+          const datafromserver = await fetch(`/getData?lastData=${lastData}`);
+          if (!datafromserver.ok) {
+            throw new Error(`Server error: ${datafromserver.status}`);
+          }
+          const result = await datafromserver.json();
+          document.getElementById("data-long-polling").innerHTML = result.data;
+          getData(result.data); // this will call the function again - long polling
+        } catch (error) {
+          console.log("Error while fetching data", error);
+        }
+      }
+
+      getData();
+    </script>
+  </body>
+</html>

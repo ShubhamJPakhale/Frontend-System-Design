@@ -4,6 +4,17 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 
+// below imports are used to read .env file
+import path from "path";
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
+// above imports are used to read .env file
+
 const app = express();
 
 app.use(bodyParser.json());

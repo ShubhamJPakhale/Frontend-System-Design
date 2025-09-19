@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>SSE Code</title>
+  </head>
+  <body>
+    <h1>Server-Sent Events (SSE) Example</h1>
+    <div id="sse-data"></div>
+    <script>
+      // sse code
+      const eventSource = new EventSource("/ssedata");
+      eventSource.onmessage = (event) => {
+        const sseDataDiv = document.getElementById("sse-data");
+        sseDataDiv.innerHTML += `<p>${event.data}</p>`;
+      };
+    </script>
+  </body>
+</html>

@@ -1,9 +1,15 @@
 import express from "express";
-import dotenv from "dotenv";
 import bodyParser from "body-parser";
 
-dotenv.config();
+// below imports are used to read .env file
+import path from "path";
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 const app = express();
 app.use(bodyParser.json());
 
@@ -80,6 +86,6 @@ app.delete("/todos/:id", (req, res) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server is running on port ${process.env.PORT || 3000}`);
 });

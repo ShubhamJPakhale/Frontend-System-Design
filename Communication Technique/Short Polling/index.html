@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Short Polling Demo</title>
+  </head>
+  <body>
+    <h1>Short Polling Example</h1>
+    <div id="data-short-polling"></div>
+    <button id="stopBtn">Stop Polling</button>
+
+    <script>
+      async function fetchData() {
+        try {
+          const datafromserver = await fetch("/getData");
+          if (!datafromserver.ok) {
+            throw new Error(`Server error: ${datafromserver.status}`);
+          }
+          const result = await datafromserver.json();
+          document.getElementById("data-short-polling").innerHTML = result.data;
+        } catch (error) {
+          console.log("Error while fetching data", error);
+        }
+      }
+
+      function shortpolling() {
+        const intervalId = setInterval(() => {
+          console.log("Polling tick at:", new Date().toLocaleTimeString());
+          fetchData();
+        }, 5000);
+
+        // Returns a function that can stop polling when called
+        return () => {
+          console.log("Clearing interval:", intervalId);
+          clearInterval(intervalId);
+        };
+      }
+
+      const stopPolling = shortpolling(); // Starts polling
+
+      // clearInterval if needed after some time =>
+      document.getElementById("stopBtn").addEventListener("click", () => {
+        stopPolling();
+      });
+
+      // Stop polling on navigation change (e.g., SPA or page unload)
+      window.addEventListener("beforeunload", () => {
+        stopPolling();
+      });
+
+      // Example: stop when a condition changes
+      //   let targetCondition = false;
+      //   setTimeout(() => {
+      //     targetCondition = true;
+      //     if (targetCondition) {
+      //       stopPolling();
+      //     }
+      //   }, 15000);
+    </script>
+  </body>
+</html>
