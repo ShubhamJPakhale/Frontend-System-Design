@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LocalStorage Code Examples</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>LocalStorage Code Examples</h1>
+      <h2>Toggle Dark/Light Theme</h2>
+      <button id="theme-toggle" onclick="toggleTheme()">
+        Toggle Theme of Page
+      </button>
+    </div>
+    <script>
+      let body = document.body;
+      function toggleTheme() {
+        const currentTheme = localStorage.getItem("theme") || "light";
+
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        // Update the body class and store the theme in localStorage
+        body.classList.remove(currentTheme);
+        body.classList.add(newTheme);
+        localStorage.setItem("theme", newTheme);
+      }
+
+      // Check and set the theme on page load
+      function checkTheme() {
+        const body = document.body;
+        const savedTheme = localStorage.getItem("theme") || "light";
+        body.classList.add(savedTheme);
+      }
+
+      // Listen for localStorage changes from other tabs - duplicate tab only
+      window.addEventListener("storage", (event) => {
+        if (event.key === "theme") {
+          const newTheme = event.newValue || "light";
+          const oldTheme = newTheme === "dark" ? "light" : "dark";
+
+          body.classList.remove(oldTheme);
+          body.classList.add(newTheme);
+        }
+      });
+
+      // Run checkTheme on page load
+      checkTheme();
+    </script>
+  </body>
+</html>

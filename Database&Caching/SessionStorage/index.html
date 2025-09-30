@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SessionStorage Notes App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      input {
+        padding: 8px;
+        margin-right: 10px;
+      }
+
+      button {
+        padding: 8px;
+        cursor: pointer;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      .note {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .remove-button {
+        background-color: #eb3414;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>SessionStorage Notes App Example</h1>
+
+    <div>
+      <input type="text" id="noteInput" placeholder="Add a note" />
+      <button onclick="addNote()">Add Note</button>
+    </div>
+
+    <ul id="noteList"></ul>
+
+    <script>
+      let notes = [];
+      // Function to add a note
+      function addNote() {
+        const noteInput = document.getElementById("noteInput");
+        const noteList = document.getElementById("noteList");
+
+        const noteText = noteInput.value.trim();
+        if (noteText !== "") {
+          // TODO:  Get existing notes from sessionStorage
+          const existingNotes = JSON.parse(
+            sessionStorage.getItem("notes") || "[]"
+          );
+
+          existingNotes.push(noteText);
+          sessionStorage.setItem("notes", JSON.stringify(existingNotes));
+          renderNotes();
+          noteInput.value = "";
+        }
+      }
+
+      // Function to remove a note
+      function removeNote(index) {
+        const existingNotes = JSON.parse(
+          sessionStorage.getItem("notes") || "[]"
+        );
+
+        existingNotes.splice(index, 1);
+
+        sessionStorage.setItem("notes", JSON.stringify(existingNotes));
+
+        renderNotes();
+      }
+
+      // Function to render notes
+      function renderNotes() {
+        const noteList = document.getElementById("noteList");
+        noteList.innerHTML = "";
+
+        const existingNotes = JSON.parse(
+          sessionStorage.getItem("notes") || "[]"
+        );
+
+        // Render each note
+        existingNotes.forEach((note, index) => {
+          const li = document.createElement("li");
+          li.className = "note";
+
+          const removeButton = document.createElement("button");
+          removeButton.className = "remove-button";
+          removeButton.textContent = "Remove";
+          removeButton.onclick = () => removeNote(index);
+
+          li.innerHTML = `<span>${note}</span>`;
+          li.appendChild(removeButton);
+
+          noteList.appendChild(li);
+        });
+      }
+
+      renderNotes();
+    </script>
+  </body>
+</html>
