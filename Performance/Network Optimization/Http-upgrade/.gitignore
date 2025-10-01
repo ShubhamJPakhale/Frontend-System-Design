@@ -1,1 +1,2 @@
+# Ignore the cert folder containing secrets
 certs/
