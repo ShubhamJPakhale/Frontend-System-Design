@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Config Driven Ui</title>
+  </head>
+  <body>
+    <h1>Hardcoded Form - general way</h1>
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" placeholder="Enter your name" name="Name" /><br />
+      <label for="email">Email:</label>
+      <input type="email" placeholder="Enter your email" name="Email" /><br />
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        placeholder="Enter your password"
+        name="Password"
+      /><br />
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+        console.log(data);
+      });
+    </script>
+
+    <!-- Config Driven UI -->
+    <h1>Config Driven UI</h1>
+    <form id="config-driven-form"></form>
+    <script src="index.js" defer></script>
+  </body>
+</html>
