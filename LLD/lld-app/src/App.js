@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
+import FQA from "./components/Accordion-page/FQA";
 
 function App() {
   const [lang, setLang] = useState("en");
@@ -21,6 +22,7 @@ function App() {
             <Route path="/about" element={<AboutUs lang={lang} />} />
           </Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/faq" element={<FQA />} />
         </Routes>
       </BrowserRouter>
       <Footer />
