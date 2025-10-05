@@ -6,16 +6,19 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { useState } from "react";
 
 function App() {
+  const [lang, setLang] = useState("en");
   return (
     <>
-      <Header />
+      <Header lang={lang} setLang={setLang} />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Body />} />
+          {/* protected route code */}
           <Route element={<ProtectedRoute />}>
-            <Route path="/about" element={<AboutUs />} />
+            <Route path="/about" element={<AboutUs lang={lang} />} />
           </Route>
           <Route path="/login" element={<Login />} />
         </Routes>
