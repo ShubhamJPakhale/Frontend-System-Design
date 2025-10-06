@@ -35,6 +35,14 @@ const Header = ({ lang, setLang }) => {
               Nested-Comments
             </a>
           </li>
+          <li>
+            <a
+              href="/imgSlider"
+              className="hover:text-gray-300 transition-colors"
+            >
+              Image-Slider
+            </a>
+          </li>
         </ul>
       </nav>
 

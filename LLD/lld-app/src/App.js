@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
 import FQA from "./components/Accordion-page/FQA";
 import NestedComments from "./components/Nested-Comments/NestedComments";
+import ImgSliderComponent from "./components/Image-Slider/ImgSliderComponent";
 
 function App() {
   const [lang, setLang] = useState("en");
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/faq" element={<FQA />} />
           <Route path="/comments" element={<NestedComments />} />
+          <Route path="/imgSlider" element={<ImgSliderComponent />} />
         </Routes>
       </BrowserRouter>
       <Footer />
