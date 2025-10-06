@@ -10,6 +10,7 @@ import { useState } from "react";
 import FQA from "./components/Accordion-page/FQA";
 import NestedComments from "./components/Nested-Comments/NestedComments";
 import ImgSliderComponent from "./components/Image-Slider/ImgSliderComponent";
+import Pagination from "./components/Pagination/Pagination";
 
 function App() {
   const [lang, setLang] = useState("en");
@@ -27,6 +28,7 @@ function App() {
           <Route path="/faq" element={<FQA />} />
           <Route path="/comments" element={<NestedComments />} />
           <Route path="/imgSlider" element={<ImgSliderComponent />} />
+          <Route path="/pagination" element={<Pagination />} />
         </Routes>
       </BrowserRouter>
       <Footer />

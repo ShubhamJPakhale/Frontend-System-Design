@@ -43,6 +43,14 @@ const Header = ({ lang, setLang }) => {
               Image-Slider
             </a>
           </li>
+          <li>
+            <a
+              href="/pagination"
+              className="hover:text-gray-300 transition-colors"
+            >
+              Pagination
+            </a>
+          </li>
         </ul>
       </nav>
 
