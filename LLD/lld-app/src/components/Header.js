@@ -51,6 +51,14 @@ const Header = ({ lang, setLang }) => {
               Pagination
             </a>
           </li>
+          <li>
+            <a
+              href="/autoSearch"
+              className="hover:text-gray-300 transition-colors"
+            >
+              AutoCompleteSearch
+            </a>
+          </li>
         </ul>
       </nav>
 

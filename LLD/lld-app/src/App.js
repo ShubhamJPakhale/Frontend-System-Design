@@ -11,6 +11,7 @@ import FQA from "./components/Accordion-page/FQA";
 import NestedComments from "./components/Nested-Comments/NestedComments";
 import ImgSliderComponent from "./components/Image-Slider/ImgSliderComponent";
 import Pagination from "./components/Pagination/Pagination";
+import AutoCompleteSearch from "./components/AutoComplete-Search/AutoCompleteSearch";
 
 function App() {
   const [lang, setLang] = useState("en");
@@ -29,6 +30,7 @@ function App() {
           <Route path="/comments" element={<NestedComments />} />
           <Route path="/imgSlider" element={<ImgSliderComponent />} />
           <Route path="/pagination" element={<Pagination />} />
+          <Route path="/autoSearch" element={<AutoCompleteSearch />} />
         </Routes>
       </BrowserRouter>
       <Footer />
