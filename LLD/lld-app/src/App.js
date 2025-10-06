@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
 import FQA from "./components/Accordion-page/FQA";
+import NestedComments from "./components/Nested-Comments/NestedComments";
 
 function App() {
   const [lang, setLang] = useState("en");
@@ -23,6 +24,7 @@ function App() {
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/faq" element={<FQA />} />
+          <Route path="/comments" element={<NestedComments />} />
         </Routes>
       </BrowserRouter>
       <Footer />

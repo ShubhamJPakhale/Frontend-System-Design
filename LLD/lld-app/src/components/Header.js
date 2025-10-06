@@ -27,6 +27,14 @@ const Header = ({ lang, setLang }) => {
               FAQ
             </a>
           </li>
+          <li>
+            <a
+              href="/comments"
+              className="hover:text-gray-300 transition-colors"
+            >
+              Nested-Comments
+            </a>
+          </li>
         </ul>
       </nav>
 
