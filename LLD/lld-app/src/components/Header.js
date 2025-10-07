@@ -59,6 +59,14 @@ const Header = ({ lang, setLang }) => {
               AutoCompleteSearch
             </a>
           </li>
+          <li>
+            <a
+              href="/livechat"
+              className="hover:text-gray-300 transition-colors"
+            >
+              LiveChat
+            </a>
+          </li>
         </ul>
       </nav>
 
